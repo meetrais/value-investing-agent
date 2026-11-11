@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Value Desk · Investment research</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="/" aria-label="The Value Desk home"><span class="brand-mark">V.</span> THE VALUE DESK</a>
+    <span class="masthead-note"><span class="status-dot"></span> Research, grounded in sources</span>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">Independent thinking starts with evidence</p>
+      <h1 id="page-title">Price is a number.<br><em>Value is a question.</em></h1>
+      <p class="intro-copy">Explore a business, examine its fundamentals, and pressure-test its valuation. Build your next investment thesis with sourced research.</p>
+    </section>
+
+    <div class="workspace">
+      <aside class="research-panel">
+        <div class="section-label"><span>01 / THE QUESTION</span><span aria-hidden="true">↗</span></div>
+        <form id="research-form">
+          <label for="query">What are you researching?</label>
+          <textarea id="query" name="query" rows="5" maxlength="4000" required placeholder="e.g. Analyze NYSE:BRK.B as a value investment"></textarea>
+          <p class="field-hint" id="query-hint">Use a ticker, company name, or a specific investment question.</p>
+          <div class="example-list" aria-label="Example research questions">
+            <button type="button" class="example" data-query="Analyze NYSE:BRK.B as a value investment, including risks and margin of safety.">Berkshire Hathaway <span aria-hidden="true">↗</span></button>
+            <button type="button" class="example" data-query="Compare NASDAQ:GOOGL and NASDAQ:MSFT: business quality, valuation, and downside risks.">Alphabet vs. Microsoft <span aria-hidden="true">↗</span></button>
+            <button type="button" class="example" data-query="Analyze NYSE:KO with bear, base, and bull valuation scenarios.">Coca-Cola valuation <span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="timeout-field">
+            <label for="timeout">Research time limit</label>
+            <select id="timeout" name="timeout">
+              <option value="180">3 minutes</option>
+              <option value="300" selected>5 minutes</option>
+              <option value="600">10 minutes</option>
+            </select>
+          </div>
+          <button id="submit-button" class="primary-button" type="submit">Begin research <span aria-hidden="true">→</span></button>
+          <p class="request-note">Powered by Gemini &amp; Google Search.<br>Each request uses your configured API quota.</p>
+        </form>
+        <div id="error" class="error" role="alert" hidden></div>
+      </aside>
+
+      <section class="report-panel" aria-labelledby="report-title" aria-busy="false">
+        <div class="section-label"><span>02 / THE RESEARCH</span><span id="report-state">AWAITING A QUESTION</span></div>
+        <div id="empty-state" class="empty-state">
+          <div class="document-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+          <p class="eyebrow">Your research memo</p>
+          <h2 id="report-title">A clearer view of<br>the business behind the ticker.</h2>
+          <p>Start with a question. Your report will bring together the evidence, valuation scenarios, and risks that matter.</p>
+          <div class="research-topics"><span>Business quality</span><span>Valuation</span><span>Margin of safety</span><span>Risks &amp; catalysts</span></div>
+        </div>
+
+        <div id="loading-state" class="loading-state" role="status" hidden>
+          <span class="loading-line" aria-hidden="true"></span>
+          <p class="eyebrow">Research in progress</p>
+          <h2>Following the evidence.</h2>
+          <p>Gathering web sources and examining the investment thesis. A detailed memo can take a few minutes.</p>
+        </div>
+
+        <article id="result" hidden>
+          <div class="result-heading">
+            <h2 id="result-query" tabindex="-1"></h2>
+            <p id="result-meta" class="result-meta"></p>
+            <div class="download-bar" aria-label="Download report">
+              <span>Save report</span>
+              <button type="button" data-format="md">Markdown ↓</button>
+              <button type="button" data-format="html">HTML ↓</button>
+              <button type="button" data-format="json">JSON ↓</button>
+            </div>
+          </div>
+          <iframe id="report-frame" title="Investment research report and Google Search suggestions" sandbox="allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer"></iframe>
+          <div class="source-appendix">
+            <h3>Source index <span id="source-count"></span></h3>
+            <p>Pages returned by Google Search. Check the original sources and dates before relying on a figure.</p>
+            <ol id="sources"></ol>
+          </div>
+        </article>
+      </section>
+    </div>
+    <footer><span>THE VALUE DESK <span aria-hidden="true">/</span> A research workspace</span><p>Research only; not personalized financial advice. Verify sources, quote timestamps, and calculations before making investment decisions.</p></footer>
+  </main>
+</body>
+</html>
